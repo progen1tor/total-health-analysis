@@ -12,8 +12,7 @@ def df_loader(current: Path =  None, raw: bool = True) -> pd.DataFrame:
     for p in current.parents:
         if p.name == 'total-health-analysis':
             filename = 'raw' if raw else 'processed'
-            index_col = None if raw else 0 
-            return pd.read_csv(p / 'data' / f'{filename}.csv', index_col=index_col)
+            return pd.read_csv(p / 'data' / f'{filename}.csv')
     raise FileNotFoundError('DataFrame path was not found.')
 
 
