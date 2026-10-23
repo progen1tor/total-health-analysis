@@ -28,7 +28,7 @@ def date_formatter(dt: str) -> str:
     
 
 def day_name_getter(dt: date) -> str: 
-    '''Получает день недели для переданной даты.'''
+    '''Функция, получающая день недели для переданной даты.'''
     if pd.isna(dt): 
         return np.nan 
     return calendar.day_name[int(dt.day_of_week)]
