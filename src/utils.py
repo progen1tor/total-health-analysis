@@ -18,14 +18,17 @@ def df_loader(current: Path =  None, raw: bool = True) -> pd.DataFrame:
 
 def date_formatter(dt: str) -> str: 
     '''Функция, приводящая строки даты в единый формат ISO.'''
+    if pd.isna(dt): 
+        return np.nan 
     if re.match(r'\d{4}-\d{2}-\d{2}', dt):
         return dt 
     if (match := re.search(r'(\d{2})[-/](\d{2})[-/](\d{4})', dt)):
         return f'{match.group(3)}-{match.group(2)}-{match.group(1)}'
+    return np.nan 
     
 
 def day_name_getter(dt: date) -> str: 
     '''Получает день недели для переданной даты.'''
-    if dt is pd.NaT: 
+    if pd.isna(dt): 
         return np.nan 
     return calendar.day_name[int(dt.day_of_week)]
