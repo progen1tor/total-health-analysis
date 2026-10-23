@@ -1,6 +1,7 @@
 import pandas as pd 
 import re 
 from pathlib import Path 
+from datetime import date 
 
 
 def df_loader(current: Path =  None) -> pd.DataFrame: 
@@ -18,3 +19,10 @@ def date_formatter(dt: str) -> str:
         return dt 
     if (match := re.search(r'(\d{2})[-/](\d{2})[-/](\d{4})', dt)):
         return f'{match.group(3)}-{match.group(2)}-{match.group(1)}'
+    
+
+def day_name_getter(dt: date) -> str: 
+    '''Получает день недели для переданной даты.'''
+    if dt is pd.NaT: 
+        return np.nan 
+    return calendar.day_name[int(dt.day_of_week)]
